@@ -1,0 +1,28 @@
+name: Deploy Static Site
+
+on:
+  push:
+    branches:
+      - production  # The trigger: adjust if your branch is named 'main'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy via Rsync
+        uses: Burnett01/rsync-deployments@7.0.0
+        with:
+          # -a: archive (preserves symlinks/perms)
+          # -v: verbose
+          # -z: compress for speed
+          # --delete: removes files on server that you deleted in Git
+          # --chmod: ensures directories are 755 and files are 644 on the server
+          switches: -avz --delete --chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r
+          path: ./
+          remote_path: /var/www/html
+          remote_host: ${{ secrets.SERVER_IP }}
+          remote_user: ${{ secrets.SERVER_USER }}
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
