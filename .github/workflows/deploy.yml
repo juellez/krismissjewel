@@ -22,7 +22,7 @@ jobs:
           # --chmod: ensures directories are 755 and files are 644 on the server
           switches: -avz --delete --chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r
           path: ./
-          remote_path: /var/www/html
+          remote_path: /var/www/gitsites/krismissjewel.us
           remote_host: ${{ secrets.SERVER_IP }}
           remote_user: ${{ secrets.SERVER_USER }}
           remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
