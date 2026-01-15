@@ -135,7 +135,7 @@ html {
 
 body.page-template-page-fullsingle-split {
 /*  background-color: #0f2129; */
-  font-family: 'Alice', serif;
+/*  font-family: 'Alice', serif;*/
   font-size: 1.2rem;
   line-height: 1.4rem;
   letter-spacing: -0.2px;
@@ -250,7 +250,7 @@ p.address { text-transform:uppercase; text-align: right; }
       .fs-split .split-image .split-content-vertically-center {
         padding: 40px; } }
   .split-content .split-intro h2 {
-      font-family: 'Alice', serif;
+/*      font-family: 'Alice', serif;*/
       font-size: 2em;
       line-height: 1em;
       margin: 2em 0 0 0;
@@ -260,7 +260,7 @@ p.address { text-transform:uppercase; text-align: right; }
     line-height: 130%;
     margin: 0 0 1em 0;
   }
-  .split-content p.signature {
+  .split-content p.signature, p.signature {
     font-family: "Mr Dafoe", Sacramento, cursive;
     font-weight: 400;
     text-align: right;
@@ -298,7 +298,7 @@ p.address { text-transform:uppercase; text-align: right; }
 
 .split-bio {
   padding: 40px 0 40px 0;
-  font-family: 'Alice', serif; }
+/*  font-family: 'Alice', serif; }*/
   @media (max-width: 1200px) {
     .split-bio {
       padding: 30px 0; } }
