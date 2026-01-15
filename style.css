@@ -250,11 +250,12 @@ p.address { text-transform:uppercase; text-align: right; }
       .fs-split .split-image .split-content-vertically-center {
         padding: 40px; } }
   .split-content .split-intro h2 {
-/*      font-family: 'Alice', serif;*/
-      font-size: 2em;
+      font-family: 'Alice', serif;
+      font-size: 1.5em;
       line-height: 1em;
       margin: 2em 0 0 0;
   }
+  .split-content .split-credit p,
   .split-content .split-intro p {
     font-family: Montserrat, sans-serif;
     line-height: 130%;
@@ -298,7 +299,8 @@ p.address { text-transform:uppercase; text-align: right; }
 
 .split-bio {
   padding: 40px 0 40px 0;
-/*  font-family: 'Alice', serif; }*/
+/*  font-family: 'Alice', serif; */
+}
   @media (max-width: 1200px) {
     .split-bio {
       padding: 30px 0; } }
@@ -395,19 +397,23 @@ p.address { text-transform:uppercase; text-align: right; }
 
 .split-lists.cv { display: none; margin-top: 80px; }
 
+ body.page-template-page-fullsingle-split
 .split-credit {
-  opacity: 0.8; 
-  border-top: solid 1px #ffffff;
+    opacity: 0.8; 
+    border-top: solid 1px #ffffff;
     padding-top: 20px;
-    margin-top: 3em;
-    margin-bottom: 5em;
-  font-weight: lighter;
-  font-family: 'Montserrat'; }
+    margin-top: 1em;
+    margin-bottom: 1em;
+    font-weight: lighter;
+    font-size: .8em;
+  }
+  body.page-template-page-fullsingle-split
   .split-credit p {
-    font-size: 13px;
+    font-size: .8em;
     margin-bottom: 12px;
-    line-height: 16px; }
-    .split-credit.small p { font-size: 11px; }
+    line-height: 16px; 
+    }
+    .split-credit.small { font-size: .9em!important; }
     .split-credit p a, .split-lists.cv a, .split-intro a {
       color: #f34577; text-decoration: none; }
     .split-credit p a:hover, .split-lists.cv a:hover, .split-intro a:hover {
@@ -425,7 +431,10 @@ p.address { text-transform:uppercase; text-align: right; }
   width: 100%;
   padding: 0 0;
   position: absolute;
-  bottom: 2px; }
+  bottom: 2px; 
+    font-size: .9em;
+    line-height: 1.2;
+}
 
 .page-template-page-fullsingle-split .split-foot p {
   color: #fff; 
@@ -491,4 +500,37 @@ video.video {
   color: #fff;
   background-color: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+
+/* 1. Default: Hide mobile version on desktop */
+.mobile-only { display: none; }
+
+/* 2. Mobile Rules */
+@media (max-width: 820px) {
+    /* Make the image side stack on top and take full width */
+    .fs-split .split-image {
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        padding: 40px 0 0 0;
+    }
+
+    /* Remove the absolute positioning of the foot so it doesn't float over the image */
+    .split-image .split-foot {
+        position: relative;
+        bottom: 0;
+    }
+
+    /* Toggle visibility */
+    .desktop-only { display: none !important; }
+    .mobile-only { 
+        display: block !important; 
+        margin-top: 40px; 
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+    
+    /* Ensure the footer text is dark enough to read on the white side */
+    .mobile-only p { color: #333 !important; }
 }
