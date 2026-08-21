@@ -446,6 +446,39 @@ section#intent .section-label { color: var(--brand-accent); }
   box-shadow: 0 0 0 2px var(--bg-secondary);
 }
 
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  transition: background 0.15s ease;
+}
+label.radio-option {
+    font-weight: 400;
+    margin-bottom: 0;
+    padding: 0;
+}
+.radio-option:hover {
+  color: var(--brand-accent);
+}
+
+.radio-option input[type="radio"] {
+  width: auto;
+  accent-color: var(--brand-primary);
+  cursor: pointer;
+}
+
 .submit-btn {
   width: 100%;
   padding: 0.9rem;
@@ -713,7 +746,8 @@ footer p {
     
     <ul class="nav-links">
       <li><a href="#location">Location</a></li>
-      <li><a href="#travel">Travel &amp; Stay</a></li>
+      <li><a href="#travel">Getting Here</a></li>
+      <li><a href="#lodging">Lodging</a></li>
       <li><a href="#flow">The Weekend</a></li>
       <li><a href="#intent">Travel Poll</a></li>
     </ul>
@@ -752,8 +786,9 @@ footer p {
     <p class="section-intro">
       We are so excited to celebrate our wedding weekend with you in the Ozarks! Formal invitations with specific venue details and event timing will follow in the mail. In the meantime, here is early travel information to help you plan your trip.
     </p>
-    <p>
-      Eureka Springs is a historic mountain town filled with winding streets, Victorian architecture, and outdoor adventure. It's a fantastic weekend getaway, and we encourage guests with extra time to make a trip out of it! Check out <a href="https://www.visiteurekasprings.com" target="_blank" rel="noopener">Visit Eureka Springs</a> for local dining and activity highlights.
+    <br>
+    <p class="section-intro">
+      Eureka Springs is a historic mountain town with winding streets, more Victorian houses per acre than anywhere (even San Franscisco), and lots of character! It's a fantastic weekend getaway, and we encourage guests with extra time to make a trip out of it. Check out <a href="https://www.visiteurekasprings.com" target="_blank" rel="noopener">Visit Eureka Springs</a> for local dining and activity highlights.
     </p>
   </div>
 </section>
@@ -763,25 +798,30 @@ footer p {
 <section id="travel" style="background: var(--bg-main);">
   <div class="section-inner">
     <div class="section-label">Planning Ahead</div>
-    <h2 class="section-title">Travel &amp; Getting Around</h2>
+    <h2 class="section-title">Getting Here & Getting Around</h2>
     
     <div class="card-grid">
       <div class="card">
         <h3>Flying In (XNA)</h3>
-        <p><strong>Nearest Airport:</strong> Northwest Arkansas National Airport (XNA) is roughly a 1-hour scenic drive to Eureka Springs.</p>
-        <p style="margin-top: 0.5rem;"><strong>West Coast Travelers:</strong> Direct flights into XNA are limited, so expect a quick connection (commonly through Dallas, Denver, or Chicago). Renting a car at XNA is recommended for getting into town.</p>
+        <p><strong>Nearest Airport:</strong> Northwest Arkansas National Airport (XNA) is a beautiful airport to fly into, easy to fly out of, and roughly a 1-hour scenic (and windy) drive to Eureka Springs. Serviced daily by Delta, United, and American Airlines.</p>
+        <br>
+        <p><strong>Ground Transport:</strong> Uber/Lyft is unpredictable for the drive into the mountains 
+        (and unavailable for return trips). We recommend renting a car, <a href="https://jimsexpressshuttle.com/" target="_blank">pre-booking a shuttle</a>, or letting us know if you'd be interested in catching a wedding shuttle.</p>
       </div>
 
       <div class="card">
-        <h3>Amtrak &amp; Regional Travel</h3>
-        <p><strong>Amtrak Travelers:</strong> The nearest Amtrak stations are in <strong>Kansas City, MO</strong> or <strong>Little Rock, AR</strong>. Commercial buses (like Jefferson Lines) connect from Kansas City down to Fayetteville, AR, where you can rent a car for the final 50-minute drive into the mountains.</p>
-        <p style="margin-top: 0.5rem;"><strong>Tulsa Connection:</strong> Regional buses also connect Tulsa, OK to Fayetteville for those traveling through Oklahoma.</p>
+        <h3>Driving &amp; Riding In</h3>
+        <p><strong>Amtrak & Greyhound:</strong> The nearest Amtrak stations are in <strong>Kansas City, MO</strong> and <strong>Little Rock, AR</strong>. Regional buses connect from these cities to Fayetteville, where there's also a Greyhound station. Fayetteville is about an hour's drive to Eureka Springs.</p>
+        <br>
+        <p><strong>Driving:</strong> Many people get car sick coming into Eureka Springs due to the windy roads. It's best to drive slow and enjoy the scenery! We'll share more as the date gets closer
+        about the best roads and routes to take as you're driving in from any direction.</p>
       </div>
 
       <div class="card">
         <h3>Parking &amp; Trolley System</h3>
-        <p><strong>No Car Needed Downtown:</strong> Eureka Springs has narrow streets and limited downtown parking, but you won't need to drive! The city operates a quaint open-air trolley system with loops connecting major hotel areas straight to downtown.</p>
-        <p style="margin-top: 0.5rem;"><strong>Wedding Shuttles:</strong> We will also arrange dedicated shuttle transport between primary hotel hubs and the ceremony/reception venues!</p>
+        <p><strong>No Car Needed Downtown:</strong> Eureka Springs has narrow streets and limited downtown parking, but you won't need to drive! The city operates a trolley system with loops connecting major hotel areas straight to downtown.</p>
+        <br>
+        <p><strong>Wedding Shuttles:</strong> We'll be working out and sharing shuttle information as the date nears.</p>
       </div>
     </div>
   </div>
@@ -789,7 +829,7 @@ footer p {
 
 <!-- Where to Stay -->
 <hr class="section-divider">
-<section style="background: rgba(181, 216, 229, 0.2);">
+<section id="lodging" style="background: rgba(181, 216, 229, 0.2);">
   <div class="section-inner">
     <div class="section-label">Lodging Options</div>
     <h2 class="section-title">Where to Stay</h2>
@@ -810,8 +850,8 @@ footer p {
       <div class="card">
         <h3>Cabins &amp; RV Parks</h3>
         <ul>
-          <li><strong><a href="https://www.eurekasprings.org/city-parks/lake-leatherwood-city-park/" target="_blank">Lake Leatherwood City Park:</a></strong> A beautiful park with RV hookups, primitive campsites, and cabins. Best of all, it sits on the <strong>Purple Trolley Route</strong>, so you can ride the trolley straight from your campsite into downtown!</li>
-          <li><strong><a href="https://www.bookeureka.com/" target="_blank">Cottages &amp; AirBnBs:</a></strong> There are countless historic cottages, AirBnB/VRBO cabins, and B&amp;Bs tucked throughout the hills surrounding town. You can check out some managed by our friends at Blessed Bohmeian Properties.</li>
+          <li><strong><a href="https://www.eurekasprings.org/city-parks/lake-leatherwood-city-park/" target="_blank">Lake Leatherwood City Park:</a></strong> A beautiful park with RV hookups, primitive campsites, and cabins. And it sits on the <strong>Trolley Route</strong>, so you can ride straight from your campsite into town!</li>
+          <li><strong><a href="https://www.bookeureka.com/" target="_blank">Cottages &amp; AirBnBs:</a></strong> There are countless historic cottages, AirBnB/VRBO cabins, and B&amp;Bs tucked throughout the hills surrounding town. You can check out some managed by our friends at Blessed Bohemian Properties.</li>
         </ul>
       </div>
     </div>
@@ -822,8 +862,8 @@ footer p {
 <hr class="section-divider">
 <section id="flow">
   <div class="section-inner">
-    <div class="section-label">General Timeline</div>
-    <h2 class="section-title">The Weekend Flow</h2>
+    <div class="section-label">General Flow</div>
+    <h2 class="section-title">The Weekend</h2>
     <p class="section-intro">
       Here's a sneak peek at what we're planning (to be updated as we send invitations):
     </p>
@@ -873,8 +913,8 @@ footer p {
     <div class="section-label">Early Count</div>
     <h2 class="section-title">Preliminary Travel Poll</h2>
     <p class="section-intro">
-      We'll open official RSVPs as we send formal invitations. 
-      Letting us know your preliminary plans today helps us organize local transport options.
+      Help us organize local transport options by letting us know your early travel plans.
+      Don't worry, it's not an official RSVP yet ... you'll get a formal invitation when it's time.
     </p>
 
     <div class="form-container">
@@ -894,29 +934,72 @@ footer p {
           <input type="email" id="email" required placeholder="you@email.com">
         </div>
 
+        <!-- Attendance Intent Radios -->
         <div class="form-group">
-          <label for="intent_status">How likely are you to attend?</label>
-          <select id="intent_status" required>
-            <option value="">Select an option...</option>
-            <option value="Definitely">Definitely! Count us in</option>
-            <option value="Likely">Likely joining</option>
-            <option value="Unlikely">Unlikely, but sending love</option>
-          </select>
+          <label>How likely are you to attend?</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="intent_status" value="Definitely" required>
+              Do fish swim? Count me/us in =)
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="intent_status" value="Likely">
+              Not sure yet, but interested in making it happen
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="intent_status" value="Unlikely">
+              Unlikely, but sending love <3
+            </label>
+          </div>
         </div>
 
+        <!-- Lodging Radios -->
         <div class="form-group">
-          <label for="hotel_needed">Will you need a room or lodging?</label>
-          <select id="hotel_needed" required>
-            <option value="Yes">Yes</option>
-            <option value="No">No / Local</option>
-            <option value="Unsure">Unsure yet</option>
-          </select>
+          <label>Will you need a room or lodging?</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="hotel_needed" value="Yes" required>
+              Yes
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hotel_needed" value="No">
+              No / Local
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hotel_needed" value="Unsure">
+              Dunno
+            </label>
+          </div>
         </div>
 
-        <button type="submit" class="submit-btn" id="submit-btn">Send Preliminary Info</button>
+        <!-- Shuttle Interest Radios -->
+        <div class="form-group">
+          <label>Flying into XNA or taking transit to Fayetteville? Would you use a group shuttle to/from Eureka Springs?</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="shuttle_interest" value="No - Own Transport" required>
+              No, I'll likely have my own transport
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="shuttle_interest" value="Yes - Group Shuttle">
+              Yes! Interested in a group shuttle
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="shuttle_interest" value="No - Renting Car">
+              No, planning to rent a car or hitch-hike
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="shuttle_interest" value="Unsure">
+              Unsure / TBD
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submit-btn">Share Preliminary Info</button>
         <div id="form-status"></div>
       </form>
     </div>
+
   </div>
 </section>
 
@@ -961,7 +1044,8 @@ footer p {
       names: document.getElementById('names').value,
       email: document.getElementById('email').value,
       intent: document.getElementById('intent_status').value,
-      hotel: document.getElementById('hotel_needed').value
+      hotel: document.getElementById('hotel_needed').value,
+      shuttle: document.getElementById('shuttle_interest').value // Added shuttle field
     };
 
     try {
@@ -976,11 +1060,11 @@ footer p {
         statusDiv.textContent = "Thank you! We've noted your early travel information.";
         this.reset();
       } else {
-        statusDiv.textContent = result.message || 'Error processing response.';
+        statusDiv.textContent = result.message || 'Ooops... our bots ran into a snag. Please try again later or shoot us an email/txt.';
         btn.disabled = false;
       }
     } catch (err) {
-      statusDiv.textContent = 'Ooops... we haven\'t hooked this up yet. Please try again later.';
+      statusDiv.textContent = 'Ooops... we haven\'t hooked this up yet. Please try again later or shoot us an email/txt.';
       btn.disabled = false;
     }
   });
