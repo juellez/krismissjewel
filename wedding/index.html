@@ -321,6 +321,18 @@ section { padding: 4.5rem 1.5rem; }
 section#flow { background-color: var(--bg-secondary); }
 section#flow .section-label { color: white; }
 section#intent .section-label { color: var(--brand-accent); }
+section#graphic {
+  background: #8fbec1;
+  padding: 0;
+  text-align: center;
+}
+section#graphic img.fullwidth {
+  margin: 0 auto;
+  padding: 1rem 0 0 0;
+  max-width: 100%;
+  max-height: 400px;
+  display: block;
+}
 
 .section-divider {
   border: none;
@@ -757,7 +769,7 @@ footer p {
 <!-- Hero -->
 <section class="graphic-hero" id="hero">
   <div class="hero-split-left">
-    <img src="./assets/kj-monogram.png" alt="Kris and Jewel Monogram" class="hero-monogram-overlay">
+    <img src="./assets/kj-monogram.webp" alt="Kris and Jewel Monogram" class="hero-monogram-overlay">
   </div>
 
   <div class="hero-split-right">
@@ -878,7 +890,7 @@ footer p {
       </div>
 
       <div class="flow-card">
-        <img src="./assets/operahouse.jpg" alt="Opera in the Ozarks" class="flow-card-img">
+        <img src="./assets/operahouse.webp" alt="Opera in the Ozarks" class="flow-card-img">
         <div class="flow-card-body">
           <div class="flow-card-tag">Saturday Afternoon</div>
           <h3>Ceremony at <a href="https://opera.org" target="_blank" rel="noopener">Opera in the Ozarks</a></h3>
@@ -1023,6 +1035,9 @@ footer p {
   </div>
 </section>
 
+<section id="graphic">
+  <img src="./assets/kj-collage1.webp" alt="Kris and Jewel" class="fullwidth">
+</section>
 
 <!-- Footer -->
 <footer>
@@ -1030,22 +1045,29 @@ footer p {
   <p>April 10, 2027 &middot; Eureka Springs, AR</p>
 </footer>
 
+
 <script>
   // Form submission handler to DigitalOcean PHP
-  document.getElementById('intent-form').addEventListener('submit', async function(e) {
+document.getElementById('intent-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     const statusDiv = document.getElementById('form-status');
     const btn = document.getElementById('submit-btn');
     btn.disabled = true;
     statusDiv.textContent = 'Submitting...';
 
+    // Helper function to safely get checked radio value
+    const getRadioValue = (name) => {
+      const checked = document.querySelector(`input[name="${name}"]:checked`);
+      return checked ? checked.value : '';
+    };
+
     const payload = {
       website_hp: document.getElementById('website_hp').value,
       names: document.getElementById('names').value,
       email: document.getElementById('email').value,
-      intent: document.getElementById('intent_status').value,
-      hotel: document.getElementById('hotel_needed').value,
-      shuttle: document.getElementById('shuttle_interest').value // Added shuttle field
+      intent: getRadioValue('intent_status'),
+      hotel: getRadioValue('hotel_needed'),
+      shuttle: getRadioValue('shuttle_interest')
     };
 
     try {
@@ -1057,7 +1079,7 @@ footer p {
 
       const result = await response.json();
       if (response.ok) {
-        statusDiv.textContent = "Thank you! We've noted your early travel information.";
+        statusDiv.textContent = "Thank you! We appreciate you sharing your early travel information.";
         this.reset();
       } else {
         statusDiv.textContent = result.message || 'Ooops... our bots ran into a snag. Please try again later or shoot us an email/txt.';
