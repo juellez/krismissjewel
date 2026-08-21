@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Save the Date — Kris & jewel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel+Decorative&family=DM+Mono:wght@400;500&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <!-- Mapbox GL JS -->
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
+
+  <style>
+/* ==========================================================================
+   1. FONTS & ASSETS
+   ========================================================================== */
+@font-face {
+  font-family: 'Safira March';
+  src: url('assets/safira_march/SafiraMarch.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================================================
+   2. SYSTEM VARIABLES (THEME CONFIGURATION)
+   ========================================================================== */
+:root {
+  /* Color Palette */
+  --brand-primary: #5b6946;      /* Deep Moss Green */
+  --brand-secondary: #1e7a7d;    /* Teal */
+  --brand-highlight: #C1DDDF;    /* Light Mid-Blue */
+  --brand-accent: #c9857c; /*#E3887D; Coral Pink Accent */
+  --brand-accent-dark: #932b42; /* crimson */
+
+  /* Surface & Body Colors */
+  --bg-main: #fffdfd;            /* almost white */
+  --bg-secondary: #B5D8E5;       /* Soft ice blue */
+  --bg-tertiary: #d8e6db;        /* light green */
+  --surface-main: #FFFFFF;       /* Card Surface */
+  --text-main: #1C2219;          /* Primary Body Text */
+  --text-muted: #53623B;         /* Secondary Text (Muted Moss) */
+  --text-light: #737D6F;         /* Light Text */
+  --text-inverse: #FFFFFF;       /* Text on dark backgrounds */
+
+  /* Structural Variables */
+  --border-color: rgba(83, 98, 59, 0.15);
+  --max-w: 820px;
+
+  /* Typography Variables */
+  --font-header: 'Safira March', serif;
+  --font-accent: 'Cinzel Decorative', serif;
+  --font-cursive: 'Alex Brush', cursive;
+  --font-body: 'Lato', system-ui, -apple-system, sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+
+/* ==========================================================================
+   3. BASE & RESET
+   ========================================================================== */
+*, *::before, *::after { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
+
+html { 
+  scroll-behavior: smooth; 
+  scroll-padding-top: 64px; 
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-main);
+  background: var(--bg-main);
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--brand-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--brand-secondary);
+  text-underline-offset: 3px;
+  font-weight: 700;
+  transition: color 0.2s, text-decoration-color 0.2s;
+}
+
+a:hover { 
+  color: var(--text-main); 
+  text-decoration-color: var(--brand-primary); 
+}
+
+/* ==========================================================================
+   4. NAVIGATION
+   ========================================================================== */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #1e7a7d;
+  padding: 0 1.5rem;
+}
+
+.nav-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+}
+
+.nav-logo {
+  font-family: var(--font-header);
+  font-size: 1.2rem;
+  color: var(--brand-highlight);
+  letter-spacing: 0.03em;
+}
+
+.nav-links { 
+  display: flex; 
+  gap: 1.5rem; 
+  list-style: none; 
+}
+
+.nav-links a {
+  color: rgba(255, 255, 255, 0.75);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active { 
+  color: var(--brand-highlight); 
+}
+
+.nav-toggle { display: none; }
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--brand-highlight);
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .hamburger { display: block; }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 56px;
+    left: 0;
+    right: 0;
+    background: var(--brand-primary);
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 1.25rem;
+    border-top: 1px solid var(--border-color);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+
+  .nav-toggle:checked ~ .nav-links { display: flex; }
+
+  .nav-toggle:checked ~ .hamburger span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+  .nav-toggle:checked ~ .hamburger span:nth-child(2) { opacity: 0; }
+  .nav-toggle:checked ~ .hamburger span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  .nav-links a { font-size: 0.85rem; padding: 0.35rem 0; display: block; }
+}
+
+/* ==========================================================================
+   5. GRAPHIC HERO SECTION
+   ========================================================================== */
+.graphic-hero {
+  display: flex;
+  width: 100vw;
+  padding: 0;
+  margin-left: calc(50% - 50vw);
+  min-height: 540px;
+  background: var(--brand-primary);
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-split-left {
+  flex: 0 0 35%;
+  background-color: var(--bg-secondary);
+  background-image: url('./assets/bkg-blueprint.png');
+  background-size: cover;
+  background-position: right center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.hero-monogram-overlay {
+  position: absolute;
+  right: -114px;
+  height: 85%; 
+  width: auto;
+  object-fit: contain;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.hero-split-right {
+  flex: 0 0 65%;
+  background: var(--brand-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 2rem 3rem 5rem;
+  color: var(--text-inverse);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-names-styled {
+  font-family: var(--font-header);
+  text-transform: lowercase;
+  font-size: 3.8rem;
+  line-height: 1.05;
+  font-weight: 400;
+  margin-bottom: 1.25rem;
+  color: var(--text-inverse);
+  letter-spacing: 0.02em;
+}
+
+.hero-date-styled {
+  font-family: var(--font-accent);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brand-highlight);
+  margin-bottom: 0.2rem;
+}
+
+.hero-location-styled {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--text-inverse);
+  margin-bottom: 2.25rem;
+}
+
+.hero-cta-styled {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: transparent;
+  color: var(--text-inverse);
+  border: 1px solid var(--brand-highlight);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.25s ease;
+}
+
+.hero-cta-styled:hover {
+  background: var(--brand-highlight);
+  color: var(--brand-primary);
+}
+
+/* ==========================================================================
+   6. SECTIONS & CONTENT LAYOUT
+   ========================================================================== */
+section { padding: 4.5rem 1.5rem; }
+
+.section-inner { 
+  max-width: var(--max-w); 
+  margin: 0 auto; 
+}
+.section-intro {
+  font-size: 1.2rem;
+  font-weight: lighter;
+}
+.section-label {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--brand-accent-dark);
+  margin-bottom: 0.4rem;
+}
+
+.section-title {
+  font-family: var(--font-header);
+  font-size: 2.2rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  margin-bottom: 1.5rem;
+  color: var(--brand-secondary);
+}
+
+section#flow { background-color: var(--bg-secondary); }
+section#flow .section-label { color: white; }
+section#intent .section-label { color: var(--brand-accent); }
+
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 0;
+}
+
+/* Cards Grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.card {
+  background: var(--surface-main);
+  border-radius: 8px;
+  padding: 1.75rem;
+  border: 1px solid var(--border-color);
+  border-top: 3px solid var(--brand-primary);
+}
+
+.card h3 {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: -1px;
+  margin-bottom: 0.5rem;
+  color: var(--brand-secondary);
+}
+
+.card p, .card ul { 
+  font-size: 0.95rem; 
+  color: var(--text-muted); 
+  line-height: 1.65; 
+}
+
+.card ul { list-style: none; margin-top: 0.5rem; }
+.card ul li { position: relative; padding-left: 1.2rem; margin-bottom: 0.4rem; }
+.card ul li::before {
+  content: "•";
+  color: var(--brand-accent);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+/* Event Flow Cards with Venue Thumbnails */
+.flow-list { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1.5rem; }
+.flow-card {
+  display: flex;
+  background: var(--surface-main);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.flow-card-img {
+  width: 220px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.flow-card-body { padding: 1.5rem; flex: 1; }
+.flow-card-body p {font-size: 1.1rem; font-weight: 300;}
+.flow-card-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--brand-accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.25rem;
+}
+.flow-card-body h3 {
+  font-family: var(--font-body);
+  font-size: 1.3rem;
+  color: var(--brand-secondary);
+  margin-bottom: 0.5rem;
+  letter-spacing: -1px;
+}
+.flow-card-body h3 a {
+  color: var(--brand-secondary);
+}
+.flow-card-body h3 a:hover {
+  color: var(--brand-accent);
+}
+
+/* ==========================================================================
+   7. FORM PIPELINE
+   ========================================================================== */
+.form-container {
+  background: var(--surface-main);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 2.5rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+}
+
+.form-group { margin-bottom: 1.25rem; }
+
+.form-group label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+  margin-bottom: 0.4rem;
+}
+
+.form-group input, .form-group select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--bg-main);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.form-group input:focus, .form-group select:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 2px var(--bg-secondary);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.9rem;
+  background: var(--brand-primary);
+  color: var(--text-inverse);
+  border: none;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.submit-btn:hover { background: var(--brand-accent); }
+
+#form-status {
+  margin-top: 1rem;
+  font-size: 0.88rem;
+  text-align: center;
+  color: var(--brand-primary);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   8. FOOTER
+   ========================================================================== */
+footer {
+  background: var(--brand-primary);
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+}
+
+footer .footer-names {
+  font-family: var(--font-header);
+  font-size: 1.3rem;
+  color: var(--brand-highlight);
+  margin-bottom: 0.35rem;
+}
+
+footer p {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ==========================================================================
+   9. RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 768px) {
+  .graphic-hero {
+    flex-direction: column;
+    min-height: auto;
+  }
+  
+  .hero-split-left {
+    flex: 0 0 320px;
+    width: 100%;
+    justify-content: center;
+    background: 
+      linear-gradient(to right, transparent 50%, var(--brand-primary) 50%),
+      url('./assets/bkg-blueprint.png') left center / cover no-repeat,
+      var(--bg-secondary);
+  }
+  
+  .hero-monogram-overlay {
+    position: relative;
+    right: 0;
+    height: 46vh;
+    max-width: 90%;
+  }
+  
+  .hero-split-right {
+    flex: 1;
+    width: 100%;
+    padding: 2rem 1.5rem 3.5rem;
+  }
+
+  .hero-names-styled {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem; 
+  }
+  .hero-names-styled br { display: none; }
+
+  .hero-location-styled { font-size: 1.2rem; }
+
+  .flow-card { flex-direction: column; }
+  .flow-card-img { width: 100%; height: 180px; }
+}
+
+
+/* ==========================================================================
+   MAP SECTION & MAPBOX STYLING
+   ========================================================================== */
+#map-section {
+  padding: 4.5rem 1.5rem;
+  background: var(--bg-main);
+}
+
+.map-container-wrapper {
+  max-width: var(--max-w);
+  margin: 1.5rem auto 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+#map {
+  width: 100%;
+  height: 480px;
+}
+
+/* Custom Mapbox Popup Styling */
+.mapboxgl-popup-content {
+  background: var(--surface-main) !important;
+  border-radius: 6px !important;
+  padding: 1rem !important;
+  font-family: var(--font-body) !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+}
+
+.popup-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: var(--brand-accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.2rem;
+}
+
+.popup-title {
+  font-family: var(--font-header);
+  font-size: 1.1rem;
+  color: var(--brand-primary);
+  margin-bottom: 0.3rem;
+}
+
+.popup-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+.popup-link {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--brand-primary);
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+.popup-link:hover {
+  color: var(--brand-accent);
+  text-decoration: underline;
+}
+
+/* Custom Mapbox Marker Pin Styles */
+.custom-marker {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+  border: 2px solid #ffffff;
+  transition: transform 0.15s ease;
+}
+
+.custom-marker:hover {
+  transform: scale(1.15);
+  z-index: 20;
+}
+
+/* Color Coding */
+.marker-wedding { 
+  background-color: var(--brand-accent); /* Coral Pink for Ceremony & Reception */
+}
+
+.marker-stay { 
+  background-color: var(--brand-primary); /* Deep Moss Green for Lodging */
+}
+
+/* House Icon for Lodging Markers */
+.marker-stay::before {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 18px;
+  background-color: #ffffff;
+  /* Embedded Inline SVG House Icon */
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>') no-repeat center / contain;
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>') no-repeat center / contain;
+}
+
+@media (max-width: 768px) {
+  #map { height: 360px; }
+}
+
+/* Inline Map Legend Badges */
+.badge-inline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #ffffff;
+  vertical-align: middle;
+  margin: 0 0.15rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.badge-wedding {
+  background-color: var(--brand-accent);
+}
+
+.badge-stay {
+  background-color: var(--brand-primary);
+}
+
+/* Inline SVG House Icon inside the Stay Badge */
+.badge-stay::before {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  background-color: #ffffff;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>') no-repeat center / contain;
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>') no-repeat center / contain;
+}
+
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">Kris &amp; jewel</span>
+    
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+    <label for="nav-toggle" class="hamburger">
+      <span></span><span></span><span></span>
+    </label>
+    
+    <ul class="nav-links">
+      <li><a href="#location">Location</a></li>
+      <li><a href="#travel">Travel &amp; Stay</a></li>
+      <li><a href="#flow">The Weekend</a></li>
+      <li><a href="#intent">Travel Poll</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="graphic-hero" id="hero">
+  <div class="hero-split-left">
+    <img src="./assets/kj-monogram.png" alt="Kris and Jewel Monogram" class="hero-monogram-overlay">
+  </div>
+
+  <div class="hero-split-right">
+    <div class="hero-names-styled">
+      kris <span class="amp">&amp;</span><br> jewel
+    </div>
+    
+    <div class="hero-date-styled">
+      April 10, 2027
+    </div>
+    
+    <div class="hero-location-styled">
+      Eureka Springs, Arkansas
+    </div>
+
+    <a href="#intent" class="hero-cta-styled">Will You Be Traveling?</a>
+  </div>
+</section>
+
+<!-- Location -->
+<hr class="section-divider">
+<section id="location">
+  <div class="section-inner">
+    <div class="section-label">The Destination</div>
+    <h2 class="section-title">Celebrating in Eureka Springs, AR</h2>
+    <p class="section-intro">
+      We are so excited to celebrate our wedding weekend with you in the Ozarks! Formal invitations with specific venue details and event timing will follow in the mail. In the meantime, here is early travel information to help you plan your trip.
+    </p>
+    <p>
+      Eureka Springs is a historic mountain town filled with winding streets, Victorian architecture, and outdoor adventure. It's a fantastic weekend getaway, and we encourage guests with extra time to make a trip out of it! Check out <a href="https://www.visiteurekasprings.com" target="_blank" rel="noopener">Visit Eureka Springs</a> for local dining and activity highlights.
+    </p>
+  </div>
+</section>
+
+<!-- Travel & Accommodation -->
+<hr class="section-divider">
+<section id="travel" style="background: var(--bg-main);">
+  <div class="section-inner">
+    <div class="section-label">Planning Ahead</div>
+    <h2 class="section-title">Travel &amp; Getting Around</h2>
+    
+    <div class="card-grid">
+      <div class="card">
+        <h3>Flying In (XNA)</h3>
+        <p><strong>Nearest Airport:</strong> Northwest Arkansas National Airport (XNA) is roughly a 1-hour scenic drive to Eureka Springs.</p>
+        <p style="margin-top: 0.5rem;"><strong>West Coast Travelers:</strong> Direct flights into XNA are limited, so expect a quick connection (commonly through Dallas, Denver, or Chicago). Renting a car at XNA is recommended for getting into town.</p>
+      </div>
+
+      <div class="card">
+        <h3>Amtrak &amp; Regional Travel</h3>
+        <p><strong>Amtrak Travelers:</strong> The nearest Amtrak stations are in <strong>Kansas City, MO</strong> or <strong>Little Rock, AR</strong>. Commercial buses (like Jefferson Lines) connect from Kansas City down to Fayetteville, AR, where you can rent a car for the final 50-minute drive into the mountains.</p>
+        <p style="margin-top: 0.5rem;"><strong>Tulsa Connection:</strong> Regional buses also connect Tulsa, OK to Fayetteville for those traveling through Oklahoma.</p>
+      </div>
+
+      <div class="card">
+        <h3>Parking &amp; Trolley System</h3>
+        <p><strong>No Car Needed Downtown:</strong> Eureka Springs has narrow streets and limited downtown parking, but you won't need to drive! The city operates a quaint open-air trolley system with loops connecting major hotel areas straight to downtown.</p>
+        <p style="margin-top: 0.5rem;"><strong>Wedding Shuttles:</strong> We will also arrange dedicated shuttle transport between primary hotel hubs and the ceremony/reception venues!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Where to Stay -->
+<hr class="section-divider">
+<section style="background: rgba(181, 216, 229, 0.2);">
+  <div class="section-inner">
+    <div class="section-label">Lodging Options</div>
+    <h2 class="section-title">Where to Stay</h2>
+    <p class="section-intro">
+      Eureka Springs is a popular weekend destination, and because the UFO Convention will be in town the same weekend, hotels may fill up quickly. We strongly recommend reserving early.
+    </p>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3>Recommended Hotels</h3>
+        <ul>
+          <li><strong><a href="https://basinpark.com/" target="_blank">Basin Park Hotel:</a></strong> Located in the heart of downtown where our reception will be held. Built in 1905, this is a convenient option for those who don't mind crooked floors and small spaces ... or the ocassional ghost.</li>
+          <li><strong><a href="https://www.forestspringsresort.com/" target="_blank">Forest Springs Resort:</a></strong> A brand-new hotel nestled in the trees just off the "ridge" highway that circles town for a convenient stay. Has group spaces for socializing and live music.</li>
+          <li><strong><a href="https://www.wanderoolodge.com/" target="_blank">The Wanderoo Lodge:</a></strong> A casual, queer friendly & popular local spot with economic room options, bar/restaurant onsite with live music, and outdoor firepit.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Cabins &amp; RV Parks</h3>
+        <ul>
+          <li><strong><a href="https://www.eurekasprings.org/city-parks/lake-leatherwood-city-park/" target="_blank">Lake Leatherwood City Park:</a></strong> A beautiful park with RV hookups, primitive campsites, and cabins. Best of all, it sits on the <strong>Purple Trolley Route</strong>, so you can ride the trolley straight from your campsite into downtown!</li>
+          <li><strong><a href="https://www.bookeureka.com/" target="_blank">Cottages &amp; AirBnBs:</a></strong> There are countless historic cottages, AirBnB/VRBO cabins, and B&amp;Bs tucked throughout the hills surrounding town. You can check out some managed by our friends at Blessed Bohmeian Properties.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Weekend Flow -->
+<hr class="section-divider">
+<section id="flow">
+  <div class="section-inner">
+    <div class="section-label">General Timeline</div>
+    <h2 class="section-title">The Weekend Flow</h2>
+    <p class="section-intro">
+      Here's a sneak peek at what we're planning (to be updated as we send invitations):
+    </p>
+
+    <div class="flow-list">
+      <div class="flow-card">
+        <div class="flow-card-body">
+          <div class="flow-card-tag">Friday Evening</div>
+          <h3>Welcome Gathering</h3>
+          <p>For those traveling in early, we’ll be hosting an informal gathering to kick off the weekend together.</p>
+        </div>
+      </div>
+
+      <div class="flow-card">
+        <img src="./assets/operahouse.jpg" alt="Opera in the Ozarks" class="flow-card-img">
+        <div class="flow-card-body">
+          <div class="flow-card-tag">Saturday Afternoon</div>
+          <h3>Ceremony at <a href="https://opera.org" target="_blank" rel="noopener">Opera in the Ozarks</a></h3>
+          <p>A stunning venue surrounded by Ozark vistas at Inspiration Point just north of town.</p>
+        </div>
+      </div>
+
+      <div class="flow-card">
+        <img src="./assets/basinparkhotel.jpg" alt="Basin Park Hotel" class="flow-card-img">
+        <div class="flow-card-body">
+          <div class="flow-card-tag">Saturday Evening</div>
+          <h3>Dinner &amp; Reception at Basin Park Hotel</h3>
+          <p>Head into downtown Eureka Springs for dinner, drinks, and dancing in the historic top-floor Barefoot Ballroom at the Basin Park Hotel.</p>
+        </div>
+      </div>
+
+      <div class="flow-card">
+        <div class="flow-card-body">
+          <div class="flow-card-tag">Sunday Morning</div>
+          <h3>Farewell Brunch</h3>
+          <p>A casual Sunday morning grab-and-go/brunch before everyone hits the road. Location TBD!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Travel Intent Form -->
+<hr class="section-divider">
+<section id="intent">
+  <div class="section-inner">
+    <div class="section-label">Early Count</div>
+    <h2 class="section-title">Preliminary Travel Poll</h2>
+    <p class="section-intro">
+      We'll open official RSVPs as we send formal invitations. 
+      Letting us know your preliminary plans today helps us organize local transport options.
+    </p>
+
+    <div class="form-container">
+      <form id="intent-form">
+        <!-- Spam Honeypot -->
+        <div style="display:none;" aria-hidden="true">
+          <input type="text" id="website_hp" name="website_hp" tabindex="-1">
+        </div>
+
+        <div class="form-group">
+          <label for="names">Your Name(s)</label>
+          <input type="text" id="names" required placeholder="Chris & Sam Smith">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" required placeholder="you@email.com">
+        </div>
+
+        <div class="form-group">
+          <label for="intent_status">How likely are you to attend?</label>
+          <select id="intent_status" required>
+            <option value="">Select an option...</option>
+            <option value="Definitely">Definitely! Count us in</option>
+            <option value="Likely">Likely joining</option>
+            <option value="Unlikely">Unlikely, but sending love</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="hotel_needed">Will you need a room or lodging?</label>
+          <select id="hotel_needed" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No / Local</option>
+            <option value="Unsure">Unsure yet</option>
+          </select>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submit-btn">Send Preliminary Info</button>
+        <div id="form-status"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Interactive Map Section -->
+<hr class="section-divider">
+<section id="map-section">
+  <div class="section-inner">
+    <div class="section-label">Area Overview</div>
+    <h2 class="section-title">Eureka Springs Map</h2>
+
+    <p class="section-intro">
+      Click any marker for details and direct links to 
+      <span class="badge-inline badge-wedding">A</span> 
+      <span class="badge-inline badge-wedding">B</span> wedding venues or 
+      <span class="badge-inline badge-stay" aria-label="Lodging Icon"></span> lodging options!
+    </p>
+
+    <div class="map-container-wrapper">
+      <div id="map"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Footer -->
+<footer>
+  <div class="footer-names">Kris &amp; jewel</div>
+  <p>April 10, 2027 &middot; Eureka Springs, AR</p>
+</footer>
+
+<script>
+  // Form submission handler to DigitalOcean PHP
+  document.getElementById('intent-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const statusDiv = document.getElementById('form-status');
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    statusDiv.textContent = 'Submitting...';
+
+    const payload = {
+      website_hp: document.getElementById('website_hp').value,
+      names: document.getElementById('names').value,
+      email: document.getElementById('email').value,
+      intent: document.getElementById('intent_status').value,
+      hotel: document.getElementById('hotel_needed').value
+    };
+
+    try {
+      const response = await fetch('https://jewelmlnarik.com/process-intent.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        statusDiv.textContent = "Thank you! We've noted your early travel information.";
+        this.reset();
+      } else {
+        statusDiv.textContent = result.message || 'Error processing response.';
+        btn.disabled = false;
+      }
+    } catch (err) {
+      statusDiv.textContent = 'Ooops... we haven\'t hooked this up yet. Please try again later.';
+      btn.disabled = false;
+    }
+  });
+</script>
+
+<script>
+  // Insert your Mapbox Public Access Token here
+  mapboxgl.accessToken = 'pk.eyJ1IjoianVlbGxleiIsImEiOiJjbTRnZmRoZnYxanc2MmpvbnZ4cnI3YW5lIn0.fOIRcqYQfcNXBmptNjKdrQ';
+
+  // Define location coordinates and popup details
+  const locations = [
+    {
+      name: "Opera in the Ozarks",
+      category: "Ceremony Venue",
+      desc: "Lush outdoor ceremony spot just outside of town.",
+      coords: [-93.8026084, 36.4458165],
+      type: "wedding",
+      url: "https://opera.org"
+    },
+    {
+      name: "Basin Park Hotel",
+      category: "Reception Venue",
+      desc: "Historic top-floor Barefoot Ballroom in downtown Eureka Springs.",
+      coords: [-93.7398699, 36.4023576],
+      type: "wedding",
+      url: "https://www.basinpark.com"
+    },
+    {
+      name: "The Wanderoo Lodge",
+      category: "Recommended Stay",
+      desc: "Casual, fun lodge with outdoor deck & craft beer.",
+      coords: [-93.7494926, 36.3996625],
+      type: "stay",
+      url: "https://www.wanderoolodge.com"
+    },
+    {
+      name: "Forest Springs Resort",
+      category: "Recommended Stay",
+      desc: "Brand-new, upscale resort nestled in the trees.",
+      coords: [-93.7352919, 36.3892848],
+      type: "stay",
+      url: "https://www.forestspringsresort.com"
+    },
+    {
+      name: "Lake Leatherwood City Park",
+      category: "Cabins, RV & Camping",
+      desc: "Cabins & RV hookups on the Purple Trolley Route!",
+      coords: [-93.766699, 36.4389218],
+      type: "stay",
+      url: "https://www.eurekasprings.org/city-parks/lake-leatherwood-city-park/"
+    }
+  ];
+
+  // Initialize Mapbox map
+  const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/outdoors-v12', // Light, natural outdoors theme
+    center: [-93.7650, 36.4000],
+    zoom: 12
+  });
+
+  // Add Navigation controls (Zoom +/-)
+  map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-right');
+
+  // Create bounding box to auto-fit all markers on render
+  const bounds = new mapboxgl.LngLatBounds();
+
+  // Track letter indices for wedding venues
+  let weddingLetters = ['A', 'B', 'C'];
+
+  locations.forEach((loc) => {
+    // Create custom styled DOM element for marker pin
+    const el = document.createElement('div');
+    const isWedding = loc.type === 'wedding';
+    
+    el.className = `custom-marker ${isWedding ? 'marker-wedding' : 'marker-stay'}`;
+    
+    // If it's a wedding venue, give it a letter (A, B...).
+    // If it's lodging, leave innerText empty so the CSS House Icon shows!
+    if (isWedding) {
+      el.innerText = weddingLetters.shift();
+    }
+
+    // Build link HTML dynamically if URL exists
+    const linkHtml = loc.url 
+      ? `<a href="${loc.url}" target="_blank" rel="noopener" class="popup-link">Visit Website &rarr;</a>` 
+      : '';
+
+    // Build popup card HTML
+    const popupContent = `
+      <div class="popup-tag">${loc.category}</div>
+      <div class="popup-title">${loc.name}</div>
+      <div class="popup-desc">${loc.desc}</div>
+      ${linkHtml}
+    `;
+
+    const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(popupContent);
+
+    // Add marker to map
+    new mapboxgl.Marker(el)
+      .setLngLat(loc.coords)
+      .setPopup(popup)
+      .addTo(map);
+
+    bounds.extend(loc.coords);
+  });
+
+  // Auto-fit map viewport to contain all 5 markers with padding
+  map.on('load', () => {
+    map.fitBounds(bounds, {
+      padding: { top: 50, bottom: 50, left: 50, right: 50 },
+      maxZoom: 13.5
+    });
+  });
+</script>
+</body>
+</html>
