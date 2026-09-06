@@ -136,9 +136,19 @@ nav {
   transition: color 0.2s;
 }
 
+.nav-links a.outline {
+    border: solid 1px var(--brand-highlight);
+    padding: 4px 6px;
+}
+
+a.nav-logo:hover,
 .nav-links a:hover,
 .nav-links a.active { 
-  color: var(--brand-highlight); 
+  color: white;
+  text-decoration: none;
+}
+.nav-links a.outline:hover {
+    border: solid 1px white;
 }
 
 .nav-toggle { display: none; }
@@ -935,7 +945,7 @@ footer a {
 <!-- Nav -->
 <nav>
   <div class="nav-inner">
-    <span class="nav-logo">Kris &amp; jewel</span>
+    <a href="#hero" class="nav-logo">Kris &amp; jewel</a>
     
     <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
     <label for="nav-toggle" class="hamburger">
@@ -943,10 +953,10 @@ footer a {
     </label>
     
     <ul class="nav-links">
-      <li><a href="#destination">Destination & Travel</a></li>
-      <li><a href="#lodging">Lodging</a></li>
+      <li><a href="#destination">Destination</a></li>
       <li><a href="#flow">The Weekend</a></li>
-      <li><a href="#intent">Travel Poll</a></li>
+      <li><a href="#intent" class="outline">Travel Poll</a></li>
+      <li><a href="#lodging">Getting & Staying Here</a></li>
       <li><a href="#mapsection">Map</a></li>
     </ul>
   </div>
@@ -994,86 +1004,10 @@ footer a {
       We are so excited to celebrate our wedding weekend with you in the Ozarks! We know getting to Eureka Springs will be a journey for many of you, so while we're still working through the details, we’ve rounded up some basics to help you begin planning your travel.</p>
       <br>
       <p class="section-intro"><a href="https://www.visiteurekasprings.com" target="_blank" rel="noopener">Eureka Springs</a> is a historic mountain town with the largest collection of Victorian architecture in the middle of America, over 60 natural (cool water) springs, and a vibrant local arts scene. It's a fantastic weekend getaway, and we encourage guests with extra time to make a trip out of it.</p>
-      <h3>Getting Here & Getting Around</h3>
     </div>
   </div>
 
-  <div class="card-grid">
-    <div class="card">
-      <h3>Flying In (XNA)</h3>
-      <p><strong>Nearest Airport:</strong> Northwest Arkansas National Airport (XNA) is a beautiful airport to fly into, easy to fly out of, and roughly a 1-hour scenic (and windy) drive to Eureka Springs. Serviced daily by Delta, United, and American Airlines.</p>
-      <br>
-      <p><strong>Ground Transport:</strong> Uber/Lyft is unpredictable for the drive into the mountains 
-      (and unavailable for return trips). We recommend renting a car, <a href="https://jimsexpressshuttle.com/" target="_blank">pre-booking a shuttle</a>, or letting us know if you'd be interested in catching a wedding shuttle.</p>
-    </div>
-
-    <div class="card">
-      <h3>Driving &amp; Riding In</h3>
-      <p><strong>Amtrak & Greyhound:</strong> The nearest Amtrak stations are in <strong>Kansas City, MO</strong> and <strong>Little Rock, AR</strong>. Regional buses connect from these cities to Fayetteville, where there's also a Greyhound station. Fayetteville is about an hour's drive to Eureka Springs.</p>
-      <br>
-      <p><strong>Driving:</strong> Many people get car sick coming into Eureka Springs due to the windy roads. It's best to drive slow and enjoy the scenery! We'll share more as the date gets closer
-      about the best roads and routes to take as you're driving in from any direction.</p>
-    </div>
-
-    <div class="card">
-      <h3>Parking &amp; Trolley System</h3>
-      <p><strong>No Car Needed Downtown:</strong> Eureka Springs has narrow streets and limited downtown parking, but you won't need to drive! The city operates a trolley system with loops connecting major hotel areas straight to downtown.</p>
-      <br>
-      <p><strong>Wedding Shuttles:</strong> We'll be working out and sharing shuttle information as the date nears.</p>
-    </div>
-  </div>
-
-  <p class="btn-wrap"><a href="#mapsection" class="btn">View Map</a></p>
-
-  </div>
-</section>
-
-
-<!--
-<hr class="section-divider">
-<section id="location">
-  <div class="section-inner">
-    <div class="section-label">The Destination</div>
-    <h2 class="section-title">Celebrating in Eureka Springs, AR</h2>
-    <p class="section-intro">
-    We are so excited to celebrate our wedding weekend with you in the Ozarks! We know getting to Eureka Springs will be a journey for many of you, so while we're still working through the details, we’ve rounded up some basics to help you begin planning your travel.</p>
-    <br>
-    <p class="section-intro"><a href="https://www.visiteurekasprings.com" target="_blank" rel="noopener">Eureka Springs</a> is a historic mountain town with the largest collection of Victorian architecture in the middle of America, over 60 natural (cool water) springs, and a vibrant local arts scene. It's a fantastic weekend getaway, and we encourage guests with extra time to make a trip out of it.</p>
-  </div>
-</section>
--->
-
-<!-- Where to Stay -->
-<hr class="section-divider">
-<section id="lodging" style="background: rgba(181, 216, 229, 0.2);">
-  <div class="section-inner">
-    <div class="section-label">Lodging Options</div>
-    <h2 class="section-title">Where to Stay</h2>
-    <p class="section-intro">
-      Eureka Springs is a popular weekend destination, and most hotels haven't opened up online booking for 2027 yet (so may show as "unavailable" online despite not being booked out yet).
-      Please let us know if you're considering traveling in, and we'll let you know as soon as we confirm our room blocks.
-      The UFO Convention will be in town our same weekend, so once online booking opens up, hotels may fill up quickly.
-    </p>
-
-    <div class="card-grid">
-      <div class="card">
-        <h3>Recommended Hotels</h3>
-        <ul>
-          <li><strong><a href="https://basinpark.com/" target="_blank">Basin Park Hotel:</a></strong> Located in the heart of downtown where our reception will be held. Built in 1905, this is a convenient option for those who don't mind crooked floors and small spaces ... or the ocassional ghost.</li>
-          <li><strong><a href="https://www.forestspringsresort.com/" target="_blank">Forest Springs Resort:</a></strong> A brand-new hotel nestled in the trees just off the "ridge" highway that circles town for a convenient stay. Has group spaces for socializing and live music.</li>
-          <li><strong><a href="https://www.wanderoolodge.com/" target="_blank">The Wanderoo Lodge:</a></strong> A casual, queer friendly & popular local spot with economic room options, bar/restaurant onsite with live music, and outdoor firepit.</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Cabins &amp; RV Parks</h3>
-        <ul>
-          <li><strong><a href="https://www.eurekasprings.org/city-parks/lake-leatherwood-city-park/" target="_blank">Lake Leatherwood City Park:</a></strong> A beautiful park with RV hookups, primitive campsites, and cabins. And it sits on the <strong>Trolley Route</strong>, so you can ride straight from your campsite into town!</li>
-          <li><strong>Cottages &amp; AirBnBs:</strong> There are countless historic cottages, AirBnB/VRBO cabins, and B&amp;Bs tucked throughout the hills surrounding town. You can check out some managed by our friends at <a href="https://www.bookeureka.com/" target="_blank">Blessed Bohemian Properties</a> and <a href="https://airbnb.com/p/TheGypsyCamp" target="_blank">Gypsy Camp</a>.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+</div>
 </section>
 
 <!-- Weekend Flow -->
@@ -1099,7 +1033,7 @@ footer a {
         <img src="./assets/operahouse.webp" alt="Opera in the Ozarks" class="flow-card-img">
         <div class="flow-card-body">
           <div class="flow-card-tag">Saturday Afternoon</div>
-          <h3>Ceremony at <a href="https://opera.org" target="_blank" rel="noopener">Opera in the Ozarks</a></h3>
+          <h3>Ceremony at Opera in the Ozarks</h3>
           <p>A stunning venue surrounded by Ozark vistas at Inspiration Point just north of town.</p>
         </div>
       </div>
@@ -1124,12 +1058,12 @@ footer a {
   </div>
 </section>
 
-<!-- Travel Intent Form -->
+<!-- Travel Intent Poll -->
 <hr class="section-divider">
 <section id="intent">
   <div class="section-inner">
     <div class="section-label">Early Count</div>
-    <h2 class="section-title">Preliminary Travel Poll</h2>
+    <h2 class="section-title">Travel Poll</h2>
     <p class="section-intro">
       Help us organize local transport options by letting us know your early travel plans.
       Don't worry, it's not an official RSVP yet ... you'll get a formal invitation when it's time.
@@ -1221,6 +1155,72 @@ footer a {
   </div>
 </section>
 
+
+<!-- Where to Stay -->
+<hr class="section-divider">
+<section id="lodging" style="background: rgba(181, 216, 229, 0.2);">
+  <div class="section-inner">
+    <div class="section-label">Early Planning: Getting & Staying Here</div>
+
+    <h2 class="section-title">Getting Here & Getting Around</h2>
+    <p class="section-intro">Being a mountain town, all the roads coming in are windy... that's why 26 miles as the crow flies takes an hour to drive, and why so many bikers and car clubs love driving through Eureka Springs.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3>Flying In (XNA)</h3>
+        <p><strong>Nearest Airport:</strong> Northwest Arkansas National Airport (XNA) is a beautiful airport to fly into, easy to fly out of, and about 1:15 scenic (and windy) drive to Eureka Springs. Serviced daily by Delta, United, and American Airlines.</p>
+        <br>
+        <p><strong>Ground Transport:</strong> Uber/Lyft is unpredictable for the drive into the mountains 
+        (and unavailable for return trips). We recommend renting a car, <a href="https://jimsexpressshuttle.com/" target="_blank">pre-booking a shuttle</a>, or <a href="#intent">letting us know</a> if you'd be interested in catching a wedding shuttle.</p>
+      </div>
+
+      <div class="card">
+        <h3>Driving &amp; Riding In</h3>
+        <p><strong>Amtrak & Greyhound:</strong> The nearest Amtrak stations are in <strong>Kansas City, MO</strong> and <strong>Little Rock, AR</strong>. Regional buses connect from these cities to Fayetteville, where there's also a Greyhound station. Fayetteville is about an hour's drive to Eureka Springs.</p>
+        <br>
+        <p><strong>Driving:</strong> Many people get car sick coming into Eureka Springs due to the windy roads. It's best to drive slow and enjoy the scenery! We'll share more as the date gets closer
+        about the best roads and routes to take as you're driving in from any direction.</p>
+      </div>
+
+      <div class="card">
+        <h3>Parking &amp; Trolley System</h3>
+        <p><strong>No Car Needed Downtown:</strong> Eureka Springs has narrow streets and limited downtown parking, but you won't need to drive! The city operates a trolley system with loops connecting major hotel areas straight to downtown.</p>
+        <br>
+        <p><strong>Wedding Shuttles:</strong> We'll be working out and sharing shuttle information as the date nears.</p>
+      </div>
+    </div>
+
+    <br><br>
+
+    <h2 class="section-title">Where to Stay</h2>
+    <p class="section-intro">
+      Eureka Springs is a popular weekend destination, and most hotels haven't opened up online booking for 2027 yet (so may show as "unavailable" online despite not being booked out yet).
+      <a href="#intent">Please let us know if you'll likely be looking for lodging</a>, and we'll let you know as soon as we confirm our room blocks.
+      The UFO Convention will be in town our same weekend, so once online booking opens up, hotels may fill up quickly.
+    </p>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3>Recommended Hotels</h3>
+        <ul>
+          <li><strong><a href="https://basinpark.com/" target="_blank">Basin Park Hotel:</a></strong> Located in the heart of downtown where our reception will be held. Built in 1905, this is a convenient option for those who don't mind crooked floors and small spaces ... or the ocassional ghost.</li>
+          <li><strong><a href="https://www.forestspringsresort.com/" target="_blank">Forest Springs Resort:</a></strong> A brand-new hotel nestled in the trees just off the "ridge" highway that circles town for a convenient stay. Has group spaces for socializing and live music.</li>
+          <li><strong><a href="https://www.wanderoolodge.com/" target="_blank">The Wanderoo Lodge:</a></strong> A casual, queer friendly & popular local spot with economic room options, bar/restaurant onsite with live music, and outdoor firepit.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Cabins &amp; RV Parks</h3>
+        <ul>
+          <li><strong><a href="https://www.eurekasprings.org/city-parks/lake-leatherwood-city-park/" target="_blank">Lake Leatherwood City Park:</a></strong> A beautiful park with RV hookups, primitive campsites, and cabins. And it sits on the <strong>Trolley Route</strong>, so you can ride straight from your campsite into town!</li>
+          <li><strong>Cottages &amp; AirBnBs:</strong> There are countless historic cottages, AirBnB/VRBO cabins, and B&amp;Bs tucked throughout the hills surrounding town. You can check out some managed by our friends at <a href="https://www.bookeureka.com/" target="_blank">Blessed Bohemian Properties</a> and <a href="https://airbnb.com/p/TheGypsyCamp" target="_blank">Gypsy Camp</a>.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- Interactive Map Section -->
 <hr class="section-divider">
 <section id="mapsection">
@@ -1248,9 +1248,7 @@ footer a {
 <!-- Footer -->
 <footer>
   <div class="footer-names">Kris &amp; jewel</div>
-  <p>April 10, 2027 &middot; Eureka Springs, AR. 
-    <a href="./assets/savethedate-postcard.webp" target="_blank">Save the Date</a></p>
-  <p>Looking for our music? <a href="../music/">Click here to visit Kris 'n Missy Jewel</a>.</p>
+  <p>April 10, 2027 &middot; Eureka Springs, AR.</p>
 </div>
 
 </footer>
@@ -1366,7 +1364,7 @@ document.getElementById('intent-form').addEventListener('submit', async function
     { 
       name: "Northwest Arkansas National Airport (XNA)", 
       category: "Airport",
-      desc: "Closest national airport. Roughly a 1-hour scenic, winding drive to Eureka Springs.",
+      desc: "Closest national airport. Roughly a 1hr and 15min scenic, windy drive to Eureka Springs.",
       coords: [-94.3068008, 36.2818985], 
       type: "airport", 
       url: "https://www.flyxna.com/" 
