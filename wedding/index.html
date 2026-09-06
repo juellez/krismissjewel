@@ -99,7 +99,7 @@ nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: #1e7a7d;
+  background: var(--brand-secondary);
   padding: 0 1.5rem;
 }
 
@@ -317,6 +317,14 @@ section { padding: 4.5rem 1.5rem; }
   margin-bottom: 1.5rem;
   color: var(--brand-secondary);
 }
+h3 {
+  font-family: var(--font-header);
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  margin-top: 1.5rem;
+  color: var(--brand-primary);
+}
 
 section#flow { background-color: var(--bg-secondary); }
 section#flow .section-label { color: white; }
@@ -492,6 +500,8 @@ label.radio-option {
 }
 
 .submit-btn {
+  margin-left: auto;
+  margin-right: auto;
   width: 100%;
   padding: 0.9rem;
   background: var(--brand-primary);
@@ -506,8 +516,37 @@ label.radio-option {
   cursor: pointer;
   transition: background 0.2s;
 }
-
 .submit-btn:hover { background: var(--brand-accent); }
+
+.btn-wrap { 
+  width: 100%; 
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.btn {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50%;
+  background: var(--brand-secondary);
+  border: 1px solid var(--brand-highlight);
+  border-radius: 4px;
+  color: var(--text-inverse);
+  text-decoration: none;
+  display: block;
+  padding: 0.9rem 1rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn:hover {
+  background: var(--brand-highlight);
+  color: white;
+}
 
 #form-status {
   margin-top: 1rem;
@@ -540,6 +579,11 @@ footer p {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.4);
+}
+
+footer a {
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration-color: rgba(255, 255, 255, 0.4);
 }
 
 /* ==========================================================================
@@ -591,7 +635,7 @@ footer p {
 /* ==========================================================================
    MAP SECTION & MAPBOX STYLING
    ========================================================================== */
-#map-section {
+#mapsection {
   padding: 4.5rem 1.5rem;
   background: var(--bg-main);
 }
@@ -742,6 +786,133 @@ footer p {
   -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>') no-repeat center / contain;
 }
 
+/* LIGHTBOX */
+.two-col-container {
+    display: flex;
+    flex-direction: column; /* Stacks on mobile */
+    gap: 30px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.small-column {
+    width: 100%;
+    max-width: 220px;
+}
+
+.main-column {
+    flex: 1;
+}
+
+/* Thumbnail Styling */
+.thumbnail-link {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.thumb {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: filter 0.3s ease;
+}
+
+.zoom-hint {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(44, 62, 43, 0.9);
+    color: #ffffff;
+    text-align: center;
+    padding: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+/* Hover Effects */
+.thumbnail-link:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.thumbnail-link:hover .thumb {
+    filter: brightness(0.9);
+}
+
+.thumbnail-link:hover .zoom-hint {
+    transform: translateY(0);
+}
+
+/* Responsive Desktop Layout */
+@media (min-width: 768px) {
+    .two-col-container {
+        flex-direction: row; /* Side-by-side on desktop */
+        align-items: flex-start;
+    }
+    .small-column {
+        max-width: 220px;
+        min-width: 120px;
+    }
+}
+
+/* Pure CSS Lightbox */
+.lightbox-overlay {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Show Lightbox when target URL matches ID */
+.lightbox-overlay:target {
+    display: flex;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 90vh;
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #ffffff;
+    font-size: 60px;
+    text-decoration: none;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.lightbox-close:hover {
+    color: #e2c08d; /* Accent gold color */
+}
+
+
   </style>
 </head>
 <body>
@@ -757,11 +928,11 @@ footer p {
     </label>
     
     <ul class="nav-links">
-      <li><a href="#location">Location</a></li>
-      <li><a href="#travel">Getting Here</a></li>
+      <li><a href="#destination">Destination & Travel</a></li>
       <li><a href="#lodging">Lodging</a></li>
       <li><a href="#flow">The Weekend</a></li>
       <li><a href="#intent">Travel Poll</a></li>
+      <li><a href="#mapsection">Map</a></li>
     </ul>
   </div>
 </nav>
@@ -786,58 +957,76 @@ footer p {
     </div>
 
     <a href="#intent" class="hero-cta-styled">Will You Be Traveling?</a>
+    <br>
+    <a href="../music" class="hero-cta-styled">Kriss 'n Missy Jewel Music</a>
+
   </div>
 </section>
 
-<!-- Location -->
+<!-- The Destination Section -->
+<section id="destination" class="destination-section">
+<div class="section-inner">
+  <div class="section-label">The Destination</div>
+  <h2 class="section-title">Celebrating in Eureka Springs, AR</h2>
+  <div class="two-col-container">
+    <div class="small-column">
+        <a href="#std-lightbox" class="thumbnail-link" aria-label="Zoom in on Save the Date postcard">
+            <img src="assets/savethedate-postcard.webp" alt="Kris and Missy Jewel Save the Date Postcard" class="thumb">
+        </a>
+    </div>
+    <div class="main-column">
+      <p class="section-intro">
+      We are so excited to celebrate our wedding weekend with you in the Ozarks! We know getting to Eureka Springs will be a journey for many of you, so while we're still working through the details, we’ve rounded up some basics to help you begin planning your travel.</p>
+      <br>
+      <p class="section-intro"><a href="https://www.visiteurekasprings.com" target="_blank" rel="noopener">Eureka Springs</a> is a historic mountain town with the largest collection of Victorian architecture in the middle of America, over 60 natural (cool water) springs, and a vibrant local arts scene. It's a fantastic weekend getaway, and we encourage guests with extra time to make a trip out of it.</p>
+      <h3>Getting Here & Getting Around</h3>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>Flying In (XNA)</h3>
+      <p><strong>Nearest Airport:</strong> Northwest Arkansas National Airport (XNA) is a beautiful airport to fly into, easy to fly out of, and roughly a 1-hour scenic (and windy) drive to Eureka Springs. Serviced daily by Delta, United, and American Airlines.</p>
+      <br>
+      <p><strong>Ground Transport:</strong> Uber/Lyft is unpredictable for the drive into the mountains 
+      (and unavailable for return trips). We recommend renting a car, <a href="https://jimsexpressshuttle.com/" target="_blank">pre-booking a shuttle</a>, or letting us know if you'd be interested in catching a wedding shuttle.</p>
+    </div>
+
+    <div class="card">
+      <h3>Driving &amp; Riding In</h3>
+      <p><strong>Amtrak & Greyhound:</strong> The nearest Amtrak stations are in <strong>Kansas City, MO</strong> and <strong>Little Rock, AR</strong>. Regional buses connect from these cities to Fayetteville, where there's also a Greyhound station. Fayetteville is about an hour's drive to Eureka Springs.</p>
+      <br>
+      <p><strong>Driving:</strong> Many people get car sick coming into Eureka Springs due to the windy roads. It's best to drive slow and enjoy the scenery! We'll share more as the date gets closer
+      about the best roads and routes to take as you're driving in from any direction.</p>
+    </div>
+
+    <div class="card">
+      <h3>Parking &amp; Trolley System</h3>
+      <p><strong>No Car Needed Downtown:</strong> Eureka Springs has narrow streets and limited downtown parking, but you won't need to drive! The city operates a trolley system with loops connecting major hotel areas straight to downtown.</p>
+      <br>
+      <p><strong>Wedding Shuttles:</strong> We'll be working out and sharing shuttle information as the date nears.</p>
+    </div>
+  </div>
+
+  <p class="btn-wrap"><a href="#mapsection" class="btn">View Map</a></p>
+
+  </div>
+</section>
+
+
+<!--
 <hr class="section-divider">
 <section id="location">
   <div class="section-inner">
     <div class="section-label">The Destination</div>
     <h2 class="section-title">Celebrating in Eureka Springs, AR</h2>
     <p class="section-intro">
-      We are so excited to celebrate our wedding weekend with you in the Ozarks! Formal invitations with specific venue details and event timing will follow in the mail. In the meantime, here is early travel information to help you plan your trip.
-    </p>
+    We are so excited to celebrate our wedding weekend with you in the Ozarks! We know getting to Eureka Springs will be a journey for many of you, so while we're still working through the details, we’ve rounded up some basics to help you begin planning your travel.</p>
     <br>
-    <p class="section-intro">
-      Eureka Springs is a historic mountain town with winding streets, more Victorian houses per acre than anywhere (even San Franscisco), and lots of character! It's a fantastic weekend getaway, and we encourage guests with extra time to make a trip out of it. Check out <a href="https://www.visiteurekasprings.com" target="_blank" rel="noopener">Visit Eureka Springs</a> for local dining and activity highlights.
-    </p>
+    <p class="section-intro"><a href="https://www.visiteurekasprings.com" target="_blank" rel="noopener">Eureka Springs</a> is a historic mountain town with the largest collection of Victorian architecture in the middle of America, over 60 natural (cool water) springs, and a vibrant local arts scene. It's a fantastic weekend getaway, and we encourage guests with extra time to make a trip out of it.</p>
   </div>
 </section>
-
-<!-- Travel & Accommodation -->
-<hr class="section-divider">
-<section id="travel" style="background: var(--bg-main);">
-  <div class="section-inner">
-    <div class="section-label">Planning Ahead</div>
-    <h2 class="section-title">Getting Here & Getting Around</h2>
-    
-    <div class="card-grid">
-      <div class="card">
-        <h3>Flying In (XNA)</h3>
-        <p><strong>Nearest Airport:</strong> Northwest Arkansas National Airport (XNA) is a beautiful airport to fly into, easy to fly out of, and roughly a 1-hour scenic (and windy) drive to Eureka Springs. Serviced daily by Delta, United, and American Airlines.</p>
-        <br>
-        <p><strong>Ground Transport:</strong> Uber/Lyft is unpredictable for the drive into the mountains 
-        (and unavailable for return trips). We recommend renting a car, <a href="https://jimsexpressshuttle.com/" target="_blank">pre-booking a shuttle</a>, or letting us know if you'd be interested in catching a wedding shuttle.</p>
-      </div>
-
-      <div class="card">
-        <h3>Driving &amp; Riding In</h3>
-        <p><strong>Amtrak & Greyhound:</strong> The nearest Amtrak stations are in <strong>Kansas City, MO</strong> and <strong>Little Rock, AR</strong>. Regional buses connect from these cities to Fayetteville, where there's also a Greyhound station. Fayetteville is about an hour's drive to Eureka Springs.</p>
-        <br>
-        <p><strong>Driving:</strong> Many people get car sick coming into Eureka Springs due to the windy roads. It's best to drive slow and enjoy the scenery! We'll share more as the date gets closer
-        about the best roads and routes to take as you're driving in from any direction.</p>
-      </div>
-
-      <div class="card">
-        <h3>Parking &amp; Trolley System</h3>
-        <p><strong>No Car Needed Downtown:</strong> Eureka Springs has narrow streets and limited downtown parking, but you won't need to drive! The city operates a trolley system with loops connecting major hotel areas straight to downtown.</p>
-        <br>
-        <p><strong>Wedding Shuttles:</strong> We'll be working out and sharing shuttle information as the date nears.</p>
-      </div>
-    </div>
-  </div>
-</section>
+-->
 
 <!-- Where to Stay -->
 <hr class="section-divider">
@@ -846,7 +1035,9 @@ footer p {
     <div class="section-label">Lodging Options</div>
     <h2 class="section-title">Where to Stay</h2>
     <p class="section-intro">
-      Eureka Springs is a popular weekend destination, and because the UFO Convention will be in town the same weekend, hotels may fill up quickly. We strongly recommend reserving early.
+      Eureka Springs is a popular weekend destination, and most hotels haven't opened up online booking for 2027 yet (so may show as "unavailable" online despite not being booked out yet).
+      Please let us know if you're considering traveling in, and we'll let you know as soon as we confirm our room blocks.
+      The UFO Convention will be in town our same weekend, so once online booking opens up, hotels may fill up quickly.
     </p>
 
     <div class="card-grid">
@@ -863,7 +1054,7 @@ footer p {
         <h3>Cabins &amp; RV Parks</h3>
         <ul>
           <li><strong><a href="https://www.eurekasprings.org/city-parks/lake-leatherwood-city-park/" target="_blank">Lake Leatherwood City Park:</a></strong> A beautiful park with RV hookups, primitive campsites, and cabins. And it sits on the <strong>Trolley Route</strong>, so you can ride straight from your campsite into town!</li>
-          <li><strong><a href="https://www.bookeureka.com/" target="_blank">Cottages &amp; AirBnBs:</a></strong> There are countless historic cottages, AirBnB/VRBO cabins, and B&amp;Bs tucked throughout the hills surrounding town. You can check out some managed by our friends at Blessed Bohemian Properties.</li>
+          <li><strong>Cottages &amp; AirBnBs:</strong> There are countless historic cottages, AirBnB/VRBO cabins, and B&amp;Bs tucked throughout the hills surrounding town. You can check out some managed by our friends at <a href="https://www.bookeureka.com/" target="_blank">Blessed Bohemian Properties</a> and <a href="https://airbnb.com/p/TheGypsyCamp" target="_blank">Gypsy Camp</a>.</li>
         </ul>
       </div>
     </div>
@@ -877,7 +1068,7 @@ footer p {
     <div class="section-label">General Flow</div>
     <h2 class="section-title">The Weekend</h2>
     <p class="section-intro">
-      Here's a sneak peek at what we're planning (to be updated as we send invitations):
+      Here's a sneak peek at what we're planning (and will update as we send the invites):
     </p>
 
     <div class="flow-list">
@@ -948,7 +1139,7 @@ footer p {
 
         <!-- Attendance Intent Radios -->
         <div class="form-group">
-          <label>How likely are you to attend?</label>
+          <label>How likely are you to attend Saturday, April 10?</label>
           <div class="radio-group">
             <label class="radio-option">
               <input type="radio" name="intent_status" value="Definitely" required>
@@ -979,18 +1170,18 @@ footer p {
             </label>
             <label class="radio-option">
               <input type="radio" name="hotel_needed" value="Unsure">
-              Dunno
+              Maybe
             </label>
           </div>
         </div>
 
         <!-- Shuttle Interest Radios -->
         <div class="form-group">
-          <label>Flying into XNA or taking transit to Fayetteville? Would you use a group shuttle to/from Eureka Springs?</label>
+          <label>If you're flying into XNA or taking transit to Fayetteville, would you be interested in a group shuttle to/from Eureka Springs?</label>
           <div class="radio-group">
             <label class="radio-option">
               <input type="radio" name="shuttle_interest" value="No - Own Transport" required>
-              No, I'll likely have my own transport
+              N/A or No, I'll likely have my own transport
             </label>
             <label class="radio-option">
               <input type="radio" name="shuttle_interest" value="Yes - Group Shuttle">
@@ -1017,7 +1208,7 @@ footer p {
 
 <!-- Interactive Map Section -->
 <hr class="section-divider">
-<section id="map-section">
+<section id="mapsection">
   <div class="section-inner">
     <div class="section-label">Area Overview</div>
     <h2 class="section-title">Eureka Springs Map</h2>
@@ -1036,14 +1227,27 @@ footer p {
 </section>
 
 <section id="graphic">
-  <img src="./assets/kj-collage1.webp" alt="Kris and Jewel" class="fullwidth">
+  <img src="./assets/kj-collage1.webp" alt="Kris and jewel floral artwork" class="fullwidth">
 </section>
 
 <!-- Footer -->
 <footer>
   <div class="footer-names">Kris &amp; jewel</div>
-  <p>April 10, 2027 &middot; Eureka Springs, AR</p>
+  <p>April 10, 2027 &middot; Eureka Springs, AR. 
+    <a href="./assets/savethedate-postcard.webp" target="_blank">Save the Date</a></p>
+  <p>Looking for our music? <a href="../music/">Click here to visit Kris 'n Missy Jewel</a>.</p>
+</div>
+
 </footer>
+
+
+<!-- Pure CSS Lightbox Overlay (Hidden by default, sits at bottom of body) -->
+<div id="std-lightbox" class="lightbox-overlay">
+    <a href="#destination" class="lightbox-close" aria-label="Close image">&times;</a>
+    <div class="lightbox-content">
+        <img src="./assets/savethedate-postcard.webp" alt="Kris and Missy Jewel Save the Date Postcard Full View">
+    </div>
+</div>
 
 
 <script>
@@ -1071,21 +1275,27 @@ document.getElementById('intent-form').addEventListener('submit', async function
     };
 
     try {
-      const response = await fetch('https://jewelmlnarik.com/process-intent.php', {
+      const response = await fetch('https://blog.jewelmlnarik.com/wedding/process-intent.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
 
+      console.log("HTTP Response Status:", response.status, response.statusText);
+
       const result = await response.json();
+      console.log("PHP Server Output:", result);
+
       if (response.ok) {
         statusDiv.textContent = "Thank you! We appreciate you sharing your early travel information.";
         this.reset();
       } else {
+        console.warn("Form rejected by PHP backend:", result.message);
         statusDiv.textContent = result.message || 'Ooops... our bots ran into a snag. Please try again later or shoot us an email/txt.';
         btn.disabled = false;
       }
     } catch (err) {
+      console.error("Network or CORS Error:", err);
       statusDiv.textContent = 'Ooops... we haven\'t hooked this up yet. Please try again later or shoot us an email/txt.';
       btn.disabled = false;
     }
